@@ -18,6 +18,7 @@
   ],
   "shortcuts": [
     { "name": "3.3% 계산기", "url": "./#calc", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] },
-    { "name": "수입 기록장", "url": "./#log", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] }
+    { "name": "수입 기록장", "url": "./#log", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "견적서·청구서", "url": "./#docs", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] }
   ]
 }

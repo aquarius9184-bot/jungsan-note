@@ -1,6 +1,6 @@
 // 서비스 워커: 오프라인에서도 앱이 열리도록 파일을 캐시해 둠.
 // 앱 파일을 수정해 배포할 때는 VERSION 을 올려야 이전 캐시가 정리돼요.
-const VERSION = "v1";
+const VERSION = "v2";
 const CACHE = `jungsan-${VERSION}`;
 const ASSETS = [
   "./",
@@ -27,7 +27,10 @@ self.addEventListener("activate", (event) => {
 
 self.addEventListener("fetch", (event) => {
   const req = event.request;
-  if (req.method !== "GET" || new URL(req.url).origin !== location.origin) return;
+  const url = new URL(req.url);
+  // 같은 사이트 파일 + 이미지 공유용 라이브러리(cdnjs)만 캐시
+  const cacheable = url.origin === location.origin || url.hostname === "cdnjs.cloudflare.com";
+  if (req.method !== "GET" || !cacheable) return;
 
   // 페이지: 네트워크 우선 (최신 버전 반영), 실패하면 캐시
   if (req.mode === "navigate") {
