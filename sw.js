@@ -13,7 +13,9 @@ const ASSETS = [
 ];
 
 self.addEventListener("install", (event) => {
-  event.waitUntil(caches.open(CACHE).then((c) => c.addAll(ASSETS)));
+  // cache: "reload" — 브라우저 HTTP 캐시에 남은 예전 파일 대신 항상 서버에서 새로 받음
+  event.waitUntil(caches.open(CACHE).then((c) =>
+    c.addAll(ASSETS.map((u) => new Request(u, { cache: "reload" })))));
   self.skipWaiting();
 });
 
@@ -33,9 +35,10 @@ self.addEventListener("fetch", (event) => {
   if (req.method !== "GET" || !cacheable) return;
 
   // 페이지: 네트워크 우선 (최신 버전 반영), 실패하면 캐시
+  // no-cache — 서버에 변경 여부를 매번 확인 (GitHub Pages의 10분 HTTP 캐시 우회)
   if (req.mode === "navigate") {
     event.respondWith(
-      fetch(req)
+      fetch(req.url, { cache: "no-cache", credentials: "same-origin" })
         .then((res) => {
           if (res.ok) {
             const copy = res.clone();
