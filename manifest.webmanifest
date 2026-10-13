@@ -1,0 +1,23 @@
+{
+  "name": "프리랜서 정산노트",
+  "short_name": "정산노트",
+  "description": "3.3% 원천징수 계산기와 프리랜서 수입·입금 관리",
+  "lang": "ko",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f4f6fb",
+  "theme_color": "#2f6bff",
+  "categories": ["finance", "productivity"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "3.3% 계산기", "url": "./#calc", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "수입 기록장", "url": "./#log", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] }
+  ]
+}
